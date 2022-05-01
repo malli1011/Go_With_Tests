@@ -1,6 +1,9 @@
 package arrays_slices
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestSum(t *testing.T) {
 	type args struct {
@@ -47,4 +50,62 @@ func TestSum_v2(t *testing.T) {
 		}
 	})
 
+}
+
+func TestSum_v1(t *testing.T) {
+	type args struct {
+		nums [][]int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		{
+			name: "Test with two arrays",
+			args: args{nums: [][]int{{1, 1}, {2, 2}}},
+			want: []int{2, 4},
+		},
+		{
+			name: "Test with 1 arrays",
+			args: args{nums: [][]int{{1, 1}, {}}},
+			want: []int{2, 0},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Sum_v1(tt.args.nums...); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Sum_v1() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_sumTails(t *testing.T) {
+	type args struct {
+		nums [][]int
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantSum []int
+	}{
+		{
+			name:    "Test with two arrays",
+			args:    args{nums: [][]int{{1, 1, 1}, {2, 2, 2}}},
+			wantSum: []int{2, 4},
+		},
+		{
+			name:    "Test with 1 arrays",
+			args:    args{nums: [][]int{{1, 1, 2, 3}, {}}},
+			wantSum: []int{6, 0},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if gotSum := sumTails(tt.args.nums...); !reflect.DeepEqual(gotSum, tt.wantSum) {
+				t.Errorf("sumTails() = %v, want %v", gotSum, tt.wantSum)
+			}
+		})
+	}
 }
