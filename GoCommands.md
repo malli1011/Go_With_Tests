@@ -46,9 +46,13 @@ After experimenting with a couple of frameworks, you decide to drop all of them 
 
 This command will remove all unused modules from your go.mod file, so you don’t have to manually edit this file.
 
-Next, you write a bunch of unit tests, so that you can easily check if any updates to your code will break existing features. In order to run your tests simply execute:
+Next, you write a bunch of unit tests, so that you can easily check if any updates to your code will break existing features. In order to run your tests in a given directory simply execute:
 
 `go test`
+
+Run all tests under a given directory including sub directories. 
+
+`go test ./...`
 
 Finally, an interesting command you may want to run is:
 
